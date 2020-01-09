@@ -1,0 +1,63 @@
+<div class="row justify-content-center mb-2">
+    <div class="col-md-8">
+        <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+            <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Registro de usuarios</mat-card-title>
+                    <mat-card-subtitle>Todos los datos son obligatorios</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row justify-content-around">
+                        <mat-form-field class="m-2">
+                            <input matInput placeholder="Nombre" name="name" #name="ngModel" [(ngModel)]="service.formData.name" type="text" required>
+                            <mat-icon matSuffix>person</mat-icon>
+                        </mat-form-field>
+            
+                        <mat-form-field class="m-2">
+                            <input matInput placeholder="Apellidos" name="surnames" #surnames="ngModel" [(ngModel)]="service.formData.surnames" type="text" required>
+                            <mat-icon matSuffix>person_outline</mat-icon>
+                        </mat-form-field>
+            
+                        <mat-form-field class="m-2">
+                            <input matInput placeholder="Identificacion" name="identification" #identification="ngModel" [(ngModel)]="service.formData.identification" type="number" required>
+                            <mat-icon matSuffix>fingerprint</mat-icon>
+                        </mat-form-field>
+            
+                        
+                    </div>
+                    <div class="row justify-content-around">
+                        <mat-form-field class="m-2">
+                            <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="date_birth" #date_birth="ngModel" [(ngModel)]="service.formData.date_birth" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        
+                        <mat-form-field class="m-2">
+                            <mat-label>Pais</mat-label>
+                            <mat-select  name="country" #country="ngModel" [(ngModel)]="service.formData.country.id" required>
+                                <mat-option  *ngFor="let country of service.listCountries" (click)="loadCities(country.id)" value={{country.id}}>
+                                {{country.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>flag</mat-icon>
+                        </mat-form-field>
+            
+                        <mat-form-field class="m-2">
+                            <mat-label>Ciudad</mat-label>
+                            <mat-select name="city" #city="ngModel" [(ngModel)]="service.formData.city.name"  required>
+                                <mat-option *ngFor="let city of service.listCitiesFormData" value={{city.id}}>
+                                {{city.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>location_city</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" routerLink="/">GUARDAR</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+</div>

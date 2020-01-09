@@ -1,0 +1,17 @@
+● src
++---● app
+|   +--● users
+|   |  |--users.component.ts|.html|.css
+|   |  +--● user
+|   |  |  |--user.component.ts|.html|.css
+|   |  |
+|   |  +--● user-list
+|   |  |  |--user-list.component.ts|.html|.css
+|   |  |
+|   |  +--● shared
+|   |     |--user.service.ts
+|   |     |--user.model.ts
+|   |
+|   |--app.module.ts
+|
+|--index.html (cdn path for bootstrap)

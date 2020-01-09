@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+    <div class="col">
+        <div class="row justify-content-center mb-1">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                    Filtro
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    Toque aqui para filtrar la lista de usuarios
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                    <form #form="ngForm" (submit)="onFilter(form)" autocomplete="off">
+                        <mat-form-field class="m-2">
+                            <input matInput placeholder="Nombre" name="name" #name="ngModel" [(ngModel)]="service.filterData.name" type="text" >
+                            <mat-icon matSuffix>person</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field class="m-2">
+                            <input matInput placeholder="Identificacion" name="identification" #identification="ngModel" [(ngModel)]="service.filterData.identification" type="number" >
+                            <mat-icon matSuffix>fingerprint</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field class="m-2">
+                            <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" name="date_birth" #date_birth="ngModel" [(ngModel)]="service.filterData.date_birth" >
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        
+                        <mat-form-field class="m-2">
+                            <mat-label>Pais</mat-label>
+                            <mat-select name="country" #country="ngModel" [(ngModel)]="service.filterData.country" >
+                                <mat-option *ngFor="let country of service.listCountries" (click)="loadCities(country.id)" value={{country.id}}>
+                                    {{country.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>flag</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field class="m-2">
+                            <mat-label>Ciudad</mat-label>
+                            <mat-select name="city" #city="ngModel" [(ngModel)]="service.filterData.city" >
+                                <mat-option *ngFor="let city of service.listCitiesFilterData" value={{city.id}}>
+                                    {{city.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>location_city</mat-icon>
+                        </mat-form-field>
+                        <mat-card-actions>
+                            <button class="m-2" mat-stroked-button color="primary" type="submit" >FILTRAR</button>
+                            <button class="m-2" mat-stroked-button color="basic" (click)="resetForm(form)" type="submit">LIMPIAR FILTRO</button>
+                        </mat-card-actions>
+                    </form>
+            </mat-expansion-panel>
+            
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-11">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Lista de usuarios</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Identificacion</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>Pais</th>
+                                <th>Ciudad</th>
+                                <th>Operacion</th>
+                            </thead>
+                            <tr *ngFor="let user of service.listUsers">
+                                <td >{{user.name}}</td>
+                                <td >{{user.surnames}}</td>
+                                <td >{{user.identification}}</td>
+                                <td >{{user.date_birth | date : "fullDate"}}</td>
+                                <td >{{user.country.name}}</td>
+                                <td >{{user.city.name}}</td> 
+                                <td >
+                                    <a mat-icon-button (click)="populateForm(user)" aria-label="Editar el usuario" routerLink="/form/{{user.id}}">
+                                        <mat-icon>edit</mat-icon>
+                                    </a>
+                                    <a mat-icon-button (click)="onDelete(user.id)"  aria-label="Eliminar  el usuario" >
+                                        <mat-icon>delete</mat-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+
