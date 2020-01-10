@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { stringify } from 'querystring';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-user',
@@ -14,8 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserComponent implements OnInit {
   id : any;
   editing : boolean = false;
-  constructor(private service : UserService, 
-    private toastr : ToastrService, private activatedRoute : ActivatedRoute) {
+  constructor(private service : UserService,private toastr : ToastrService, private activatedRoute : ActivatedRoute, private router:Router) {
       this.id = this.activatedRoute.snapshot.params['id'];
       if (this.id) {
         this.editing = true;
@@ -57,10 +57,12 @@ export class UserComponent implements OnInit {
   }
 
   onSubmit(form : NgForm){
-    if(this.editing)
+    if(this.editing){
       this.updateRecord(form);
-    else
+      this.router.navigate(['/list']);
+    }else{
       this.insertRecord(form);
+    }
   }
 
   insertRecord(form : NgForm){
