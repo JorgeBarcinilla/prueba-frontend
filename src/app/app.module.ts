@@ -9,7 +9,7 @@ import { UserComponent } from './users/user/user.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserService } from './shared/user.service';
 
-import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule,MatToolbarModule, 
+import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule,MatToolbarModule,
   MatDatepickerModule, MatNativeDateModule, MatCardModule, MatGridListModule, MatTableModule,MatExpansionModule
   } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,14 +35,14 @@ const routes: Route[] = [
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatInputModule, 
-    MatButtonModule,
-    MatSelectModule,
-    MatIconModule, 
-    MatDatepickerModule,
+    MatInputModule,
+    //MatButtonModule,
+    //MatSelectModule,
+    //MatIconModule,
+    //MatDatepickerModule,
     MatNativeDateModule,
-    MatCardModule, 
-    MatGridListModule, 
+    MatCardModule,
+    MatGridListModule,
     MatTableModule,
     MatToolbarModule,
     MatExpansionModule,
