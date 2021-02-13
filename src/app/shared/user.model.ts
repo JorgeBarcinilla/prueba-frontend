@@ -18,11 +18,11 @@ export class UserFilter {
 
 export class Country {
     id: number;
-    name: string;
+    //name: string;
     cities: City[];
 }
 
 export class City {
-    id: number;
+    //id: number;
     name: string;
 }
