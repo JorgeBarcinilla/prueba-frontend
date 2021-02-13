@@ -8,10 +8,10 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 export class UserService {
 
   formData : User;
-  filterData : UserFilter;
-  listUsers : User[];
-  listCountries : Country[];
-  listCitiesFormData : City[];
+  //filterData : UserFilter;
+  //listUsers : User[];
+  //listCountries : Country[];
+  //listCitiesFormData : City[];
   listCitiesFilterData : City[];
 
 
